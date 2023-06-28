@@ -7,17 +7,17 @@ const prod = require('./products')
 const config = {
   // connectionString: process.env.DATABASE_URL,
   // ssl: true,
-  host: process.env.DATABASE_URL,
-  port: process.env.DATABASE_PORT,
-  database: process.env.DATABASE,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
+  // host: process.env.DATABASE_URL,
+  // port: process.env.DATABASE_PORT,
+  // database: process.env.DATABASE,
+  // user: process.env.DATABASE_USER,
+  // password: process.env.DATABASE_PASSWORD,
 
-  // host: '192.168.50.154',
-  // port: 5432,
-  // user: "app",
-  // password: '',
-  // database: "storeapp",
+  host: '192.168.50.154',
+  port: 5432,
+  user: "app",
+  password: '',
+  database: "storeapp",
 }
 
 
