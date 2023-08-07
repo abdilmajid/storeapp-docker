@@ -3,10 +3,6 @@ services:
 
   store-web:
     build: ./store-web
-    environment:
-      - PORT=4000
-      - REACT_APP_API_CALL=http://localhost:4001
-      - NODE_OPTIONS=--openssl-legacy-provider
     ports:
       - '4000:4000'
     volumes:
@@ -15,12 +11,6 @@ services:
 
   store-api:
     build: ./store-api
-    environment:
-      - PORT=4001
-      # - DATABASE_URL="192.168.50.154"
-      # - DATABASE_USER="app"
-      # - DATABASE_PASSWORD=''
-      # - DATABASE="storeapp"
     ports:
       - '4001:4001'
     volumes:
@@ -31,10 +21,6 @@ services:
     privileged: true
     build: ./store-db
     restart: always
-    environment:
-      - POSTGRES_USER=app
-      - POSTGRES_DB=storeapp
-      - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - '5432:5432'
     volumes:
