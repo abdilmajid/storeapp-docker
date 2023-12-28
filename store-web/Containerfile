@@ -8,7 +8,7 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN npm run build
 
 # Prod
-FROM nginx
+FROM docker.io/library/nginx:latest
 # RUN addgroup app && adduser -G app -S app
 # USER app
 # RUN mkdir /app && chown app:app /app
