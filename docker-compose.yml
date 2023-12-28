@@ -25,7 +25,7 @@ services:
       - '5432:5432'
     volumes:
     # here we create and link persistant postgres database, so if image is deleted the data is not lost
-      - db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data:Z
     # here we create our initial tables
       - ./store-db/store.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
