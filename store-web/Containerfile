@@ -1,17 +1,17 @@
-# Build
-FROM node:20.3.0-alpine3.18 AS builder
+FROM node:20.3.0-alpine3.18
+
+RUN addgroup app && adduser -G app -S app
+RUN mkdir /app && chown app:app /app
+USER app
+
 WORKDIR /app
-COPY package*.json .
+COPY --chown=app:app package*.json .
 RUN npm install
-COPY . .
+COPY --chown=app:app . .
+
+ENV PORT=4000
+ENV REACT_APP_API_CALL=http://192.168.50.5:4001
 ENV NODE_OPTIONS=--openssl-legacy-provider
-RUN npm run build
 
-# Prod
-FROM docker.io/library/nginx:latest
-# RUN addgroup app && adduser -G app -S app
-# USER app
-# RUN mkdir /app && chown app:app /app
-COPY --from=builder /app/build /usr/share/nginx/html
 EXPOSE 4000
-
+CMD ["npm", "start"]

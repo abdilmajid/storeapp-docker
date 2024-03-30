@@ -3,24 +3,31 @@ services:
 
   store-web:
     build: ./store-web
+    container_name: store-web
+    restart: unless-stopped
     ports:
       - '4000:4000'
-    volumes:
-      - ./store-web:/app:Z
-      - /app/node_modules
+    # volumes:
+      # - ./store-web:/app:Z
+      # - /app/node_modules
 
   store-api:
     build: ./store-api
+    container_name: store-api
+    restart: unless-stopped
     ports:
       - '4001:4001'
-    volumes:
-      - ./store-api:/app:Z
-      - /app/node_modules
+    depends_on:
+      - store-db
+    # volumes:
+      # - ./store-api:/app:Z
+      # - /app/node_modules
 
   store-db:
     privileged: true
     build: ./store-db
     restart: always
+    container_name: store-db
     ports:
       - '5432:5432'
     volumes:
